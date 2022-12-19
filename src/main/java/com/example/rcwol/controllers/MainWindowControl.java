@@ -68,16 +68,20 @@ public class MainWindowControl {
     }
 
     public void addFolder() throws IOException {
-            FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("add-folder.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
+            loadAddFolderWindow();
+    }
 
-            AddFolderControl addFolderControl = fxmlLoader.getController();
-            addFolderControl.setFoldersArray(folders);
+    public void loadAddFolderWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("add-folder.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
 
-            Stage stage = (Stage) this.addFolderButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        AddFolderControl addFolderControl = fxmlLoader.getController();
+        addFolderControl.setFoldersArray(folders);
+
+        Stage stage = (Stage) this.addFolderButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void deleteFolder() throws SQLException {
@@ -118,21 +122,25 @@ public class MainWindowControl {
 
     public void addComputer() throws IOException {
         if (selectedFolder != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("add-computer.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-
-            AddComputerControl addComputerControl = fxmlLoader.getController();
-            addComputerControl.setSelectedFolder(selectedFolder);
-            addComputerControl.setComputersArray(computers);
-
-            Stage stage = (Stage) this.addComputerButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            loadAddComputerWindow();
         }
         else
             MainWindowControl.alertMessage("Please select folder");
 
+    }
+
+    private void loadAddComputerWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("add-computer.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+
+        AddComputerControl addComputerControl = fxmlLoader.getController();
+        addComputerControl.setSelectedFolder(selectedFolder);
+        addComputerControl.setComputersArray(computers);
+
+        Stage stage = (Stage) this.addComputerButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void deleteComputer() throws SQLException {
@@ -164,7 +172,7 @@ public class MainWindowControl {
         pcMACTF.setText(selectedComputer.getMAC());
     }
 
-    public void wakeComputer() throws IOException {
+    public void wakeComputer() throws IOException { //tik pasirinkus kompiuteri
         WOL.wakeComputer(IP_RANGE, selectedComputer.getMAC());
         pingComputer(10000, selectedComputer.getIP());
     }
