@@ -37,7 +37,7 @@ public class AddComputerControl {
         boolean doesExist = false;
         for(Computer computer : computers) {
             if (computer.getName().equals(this.nameTF.getText())) {
-                MainWindowControl.alertMessage("Computer already exists"); //Iskelti tikrinima i DB klase
+                MainWindowControl.alertMessage("Computer already exists");
                 doesExist = true;
                 break;
             }
@@ -46,7 +46,6 @@ public class AddComputerControl {
         {
             try {
                 DbQuerys.addComputer(new Computer(selectedFolder.getId(), this.nameTF.getText(), this.MACTF.getText(), this.IPTF.getText()));
-                MainWindowControl.alertMessage("Computer created"); // iskelti pranesima i DB klase
             } catch (Exception e) {
                 System.out.println(e);
                 MainWindowControl.alertMessage("Error creating computer" + e);

@@ -31,7 +31,7 @@ public class AddFolderControl {
         boolean doesExist = false;
         folders.add(new Folder(0, " "));
         for(Folder folder : folders) {
-            if (folder.getName().equals(this.nameTF.getText())) { //Iskelti tikrinima i DB klase
+            if (folder.getName().equals(this.nameTF.getText())) {
                 MainWindowControl.alertMessage("Folder already exists");
                 doesExist = true;
                 break;
@@ -41,7 +41,6 @@ public class AddFolderControl {
         {
             try {
                 DbQuerys.addFolder(new Folder(this.nameTF.getText()));
-                MainWindowControl.alertMessage("Folder created"); // iskelti pranesima i DB klase
             } catch (Exception e) {
                 System.out.println(e);
                 MainWindowControl.alertMessage("Error creating folder" + e);

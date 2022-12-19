@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException; //perteklinis kodas
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -46,7 +45,7 @@ public class MainWindowControl {
     private Computer selectedComputer;
     private Folder selectedFolder;
 
-    private static final String ipRange = "192.168.137.255"; //neatitinka static pavadinimo standarto
+    private static final String IP_RANGE = "192.168.137.255";
 
     public void initialize() throws SQLException {
         setFoldersList();
@@ -65,11 +64,10 @@ public class MainWindowControl {
 
     private ArrayList<Folder> getFolders() throws SQLException{
         folders = DbQuerys.getAllFolders();
-        this.folders = folders; //dublikatas, folders jau turi reiksme
         return folders;
     }
 
-    public void addFolder() throws IOException, SQLException { //sqlexception nereikalinga, perteklius
+    public void addFolder() throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("add-folder.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
@@ -94,7 +92,7 @@ public class MainWindowControl {
                 if(folder.getName().equals(folderName))
                     selectedFolder = folder;
             }
-            setComputersList(selectedFolder.getId());
+            setComputersList();
         }
     }
 
@@ -104,7 +102,7 @@ public class MainWindowControl {
     //COMPUTERS//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void setComputersList(int folderID) throws SQLException { // folderID nereikalingas, perteklinis
+    public void setComputersList() throws SQLException {
         this.computersList.getItems().clear();
         for (Computer computer : this.getComputers()) {
             if(computer.getFolderId() == selectedFolder.getId()) {
@@ -115,7 +113,6 @@ public class MainWindowControl {
 
     public ArrayList<Computer> getComputers() throws SQLException {
         computers = DbQuerys.getAllComputers();
-        this.computers = computers; // computers jau turi reiksme, perteklinis veiksmas
         return computers;
     }
 
@@ -140,11 +137,12 @@ public class MainWindowControl {
 
     public void deleteComputer() throws SQLException {
         DbQuerys.removeComputer(selectedComputer);
-        setComputersList(selectedFolder.getId());
+        setComputersList();
     }
 
-    public void updateComputer() throws IOException, SQLException { //ioexception nereikalinga, perteklinis
-        DbQuerys.updateComputer(selectedComputer.getId(), pcNameTF.getText().toString(), pcMACTF.getText().toString(), pcIPTF.getText().toString()); //nereikia toString(), nes metodas getText() grazina ir taip string //netikrinamos reiksmes
+    public void updateComputer() throws SQLException {
+        DbQuerys.updateComputer(selectedComputer.getId(), pcNameTF.getText(), pcMACTF.getText(), pcIPTF.getText());
+        setComputersList();
     }
 
     public void selectComputer(MouseEvent mouseEvent) throws IOException {
@@ -167,21 +165,21 @@ public class MainWindowControl {
     }
 
     public void wakeComputer() throws IOException {
-        WOL.wakeComputer(ipRange, selectedComputer.getMAC());
+        WOL.wakeComputer(IP_RANGE, selectedComputer.getMAC());
         pingComputer(10000, selectedComputer.getIP());
     }
 
     public void wakeFolderComputers() {
         for(Computer computer : computers) {
             if(computer.getFolderId() == selectedFolder.getId())
-                WOL.wakeComputer(ipRange, computer.getMAC());
+                WOL.wakeComputer(IP_RANGE, computer.getMAC());
 
         }
     }
 
     public void wakeAllComputers() {
         for(Computer computer : computers) {
-            WOL.wakeComputer(ipRange, computer.getMAC());
+            WOL.wakeComputer(IP_RANGE, computer.getMAC());
 
         }
     }
@@ -189,7 +187,7 @@ public class MainWindowControl {
     public void checkComputerStatus() throws IOException {
         int timeOut = 3000;
         boolean status = pingComputer(timeOut, selectedComputer.getIP());
-        if (status == true) // galima parasyti tiesiog status
+        if (status)
             statusTF.setText("ON");
         else
             statusTF.setText("OFF");

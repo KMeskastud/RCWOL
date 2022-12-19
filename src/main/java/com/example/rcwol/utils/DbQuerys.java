@@ -13,13 +13,18 @@ public class DbQuerys {
     private static Statement statement;
     private static PreparedStatement preparedStatement;
 
-    public static void addFolder(Folder folder) throws SQLException { //netikrinamas ilgis, ar tuscias
-        connection = DbUtils.connectToDb();
-        String insertString = "INSERT INTO folder(`name`) VALUES (?)";
-        preparedStatement = connection.prepareStatement(insertString);
-        preparedStatement.setString(1, folder.getName());
-        preparedStatement.execute();
-        DbUtils.disconnectFromDb(connection, preparedStatement);
+    public static void addFolder(Folder folder) throws SQLException {
+        if(!folder.getName().equals("") && folder.getName().length() <= 30) {
+            connection = DbUtils.connectToDb();
+            String insertString = "INSERT INTO folder(`name`) VALUES (?)";
+            preparedStatement = connection.prepareStatement(insertString);
+            preparedStatement.setString(1, folder.getName());
+            preparedStatement.execute();
+            DbUtils.disconnectFromDb(connection, preparedStatement);
+            MainWindowControl.alertMessage("Folder created");
+        }
+        else
+            MainWindowControl.alertMessage("Folder not created, bad input");
     }
 
     public static void removeFolder(Folder folder) throws SQLException {
@@ -53,16 +58,22 @@ public class DbQuerys {
     }
 
     public static void addComputer(Computer computer) throws SQLException { //netikrinamas ilgis, ar tuscias
-        connection = DbUtils.connectToDb();
-        String insertString = "INSERT INTO computer(`folder_id`, `name`, `mac`, `ip`) VALUES (?,?,?,?)";
-        preparedStatement = connection.prepareStatement(insertString);
-        preparedStatement.setInt(1, computer.getFolderId());
-        preparedStatement.setString(2, computer.getName());
-        preparedStatement.setString(3, computer.getMAC());
-        preparedStatement.setString(4, computer.getIP());
-        preparedStatement.execute();
+        if(!computer.getName().equals("") && !computer.getIP().equals("") && !computer.getMAC().equals("") && computer.getName().length() <= 30)
+        {
+            connection = DbUtils.connectToDb();
+            String insertString = "INSERT INTO computer(`folder_id`, `name`, `mac`, `ip`) VALUES (?,?,?,?)";
+            preparedStatement = connection.prepareStatement(insertString);
+            preparedStatement.setInt(1, computer.getFolderId());
+            preparedStatement.setString(2, computer.getName());
+            preparedStatement.setString(3, computer.getMAC());
+            preparedStatement.setString(4, computer.getIP());
+            preparedStatement.execute();
 
-        DbUtils.disconnectFromDb(connection, preparedStatement);
+            DbUtils.disconnectFromDb(connection, preparedStatement);
+            MainWindowControl.alertMessage("Computer created");
+        }
+        else
+            MainWindowControl.alertMessage("Computer not created, bad input");
     }
 
     public static void removeComputer(Computer computer) throws SQLException {
