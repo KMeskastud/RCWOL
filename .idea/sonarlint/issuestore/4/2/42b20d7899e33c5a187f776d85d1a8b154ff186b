@@ -1,0 +1,14 @@
+
+‰
+java:S13195"gThe type of "folders" should be an interface such as "List" rather than the implementation "ArrayList".(©ß‡úÿÿÿÿ8—«Å“Ò0
+T
+java:S1172"2Remove this unused method parameter "actionEvent".(å×¦ùùÿÿÿÿ8³«Å“Ò0
+I
+java:S1125("'Remove the unnecessary boolean literal.(Åûùüÿÿÿÿ8µ«Å“Ò0
+Z	java:S106."9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8¶«Å“Ò0
+g
+java:S1854="ERemove this useless assignment to local variable "mainWindowControl".(ª­‡ğşÿÿÿÿ8·«Å“Ò0
+‹
+java:S11309"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(Ó×­Ş8·«Å“Ò0
+X
+java:S1481="6Remove this unused "mainWindowControl" local variable.(ª­‡ğşÿÿÿÿ8¾«Å“Ò0

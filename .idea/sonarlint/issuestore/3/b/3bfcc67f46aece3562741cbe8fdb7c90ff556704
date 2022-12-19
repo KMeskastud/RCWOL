@@ -1,0 +1,9 @@
+
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õĞúÒşÿÿÿÿ8ŞÔîÖÒ0
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä„»—ıÿÿÿÿ8ßÔîÖÒ0
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëœıûÿÿÿÿ8ßÔîÖÒ0
+W
+java:S1118":Add a private constructor to hide the implicit public one.(¤¹ı´8†ÕîÖÒ0
+S
+java:S6437"6Revoke and change this password, as it is compromised.(»¥ÏÉ8’ÕîÖÒ0
+T	java:S106"9Replace this use of System.out or System.err by a logger.(ˆƒöq8•ÕîÖÒ0

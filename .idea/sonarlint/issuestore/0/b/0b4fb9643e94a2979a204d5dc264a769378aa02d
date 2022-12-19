@@ -1,0 +1,36 @@
+
+E
+java:S3740%"/Provide the parametrized type for this generic.(¢¶Ë³
+E
+java:S3740'"/Provide the parametrized type for this generic.(–¾¿¨
+…
+java:S1319t"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÄÚëE
+‚
+java:S4165v"gRemove this useless assignment; "computers" already holds the assigned value along all execution paths.(²´Ûìüÿÿÿÿ
+€
+java:S4165D"eRemove this useless assignment; "folders" already holds the assigned value along all execution paths.(¶óÛ½úÿÿÿÿ
+t	java:S1151"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ß‹Äúÿÿÿÿ
+‰
+java:S1130H"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(æöÎ†þÿÿÿÿ
+G
+java:S1172Z"1Remove this unused method parameter "mouseEvent".(ÊŸÁ
+E
+java:S1172k"/Remove this unused method parameter "folderID".(ñó¸¦
+ƒ
+java:S1130’"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(å™â‚
+X
+java:S1858“"A"getText" returns a string, there's no need to call "toString()".(äŸËí
+X
+java:S1858“"A"getText" returns a string, there's no need to call "toString()".(äŸËí
+X
+java:S1858“"A"getText" returns a string, there's no need to call "toString()".(äŸËí
+G
+java:S1172–"1Remove this unused method parameter "mouseEvent".(¿žó#
+>
+java:S1125À"'Remove the unnecessary boolean literal.(Í”Èƒ
+J
+java:S1656v"/Remove or correct this useless self-assignment.(²´Ûìüÿÿÿÿ
+J
+java:S1656D"/Remove or correct this useless self-assignment.(¶óÛ½úÿÿÿÿ
+\
+java:S1128":Remove this unused import 'java.net.UnknownHostException'.(„ÓÝÄþÿÿÿÿ8Ò…”ßÒ0
