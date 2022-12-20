@@ -57,7 +57,7 @@ public class DbQuerys {
         return folders;
     }
 
-    public static void addComputer(Computer computer) throws SQLException { //netikrinamas ilgis, ar tuscias
+    public static void addComputer(Computer computer) throws SQLException {
         if(!computer.getName().equals("") && !computer.getIP().equals("") && !computer.getMAC().equals("") && computer.getName().length() <= 30)
         {
             connection = DbUtils.connectToDb();
@@ -84,12 +84,19 @@ public class DbQuerys {
         DbUtils.disconnectFromDb(connection, preparedStatement);
     }
 
-    public static void updateComputer(int id, String name, String mac, String ip) throws SQLException { //netikrinamas ilgis, ar tuscias
-        connection = DbUtils.connectToDb();
-        String insertString = "UPDATE computer SET name = '" + name + "', mac = '" + mac + "', ip = '" + ip + "' where id = '" + id + "'";
-        preparedStatement = connection.prepareStatement(insertString);
-        preparedStatement.execute();
-        DbUtils.disconnectFromDb(connection, preparedStatement);
+    public static void updateComputer(int id, String name, String mac, String ip) throws SQLException {
+
+        if(!name.equals("") && !ip.equals("") && !ip.equals("") && name.length() <= 30)
+        {
+            connection = DbUtils.connectToDb();
+            String insertString = "UPDATE computer SET name = '" + name + "', mac = '" + mac + "', ip = '" + ip + "' where id = '" + id + "'";
+            preparedStatement = connection.prepareStatement(insertString);
+            preparedStatement.execute();
+            DbUtils.disconnectFromDb(connection, preparedStatement);
+            MainWindowControl.alertMessage("Computer updated");
+        }
+        else
+            MainWindowControl.alertMessage("Computer not updated, bad input");
     }
 
     public static ArrayList<Computer> getAllComputers() throws SQLException {

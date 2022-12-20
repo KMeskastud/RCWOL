@@ -3,6 +3,7 @@ module com.example.rcwol {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.graphics;
+    requires org.testng;
 
 
     opens com.example.rcwol to javafx.fxml;
